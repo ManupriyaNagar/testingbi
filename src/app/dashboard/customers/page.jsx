@@ -310,9 +310,9 @@ export default function Customers() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {filteredCustomers.map((customer) => (
+              {filteredCustomers.map((customer,index) => (
                 <tr
-                  key={customer._id}
+                   key={customer._id || index}
                   className="hover:bg-gray-50 transition-colors"
                 >
                   <td className="px-6 py-4 whitespace-nowrap">
