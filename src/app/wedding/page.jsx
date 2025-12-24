@@ -119,11 +119,10 @@ export default function WeddingInvitations() {
                 <button
                   key={idx}
                   onClick={() => setSelectedFilter(filter.name)}
-                  className={`px-3 py-2 text-sm border rounded-md whitespace-nowrap transition-all ${
-                    selectedFilter === filter.name
-                      ? "bg-green-100 border-green-400 text-green-700"
-                      : "bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
-                  }`}
+                  className={`px-3 py-2 text-sm border rounded-md whitespace-nowrap transition-all ${selectedFilter === filter.name
+                    ? "bg-green-100 border-green-400 text-green-700"
+                    : "bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
+                    }`}
                 >
                   {filter.name}
                 </button>
@@ -150,7 +149,7 @@ export default function WeddingInvitations() {
                       alt={card.title}
                       className="w-full h-44 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300">
+                    <div className="absolute inset-0 flex items-center justify-center  bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300">
                       <button className="bg-white text-gray-800 px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm sm:text-base font-medium">
                         View Details
                       </button>
