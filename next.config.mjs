@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
   images: {
-    domains: ["localhost"], // allow your backend
+    unoptimized: true,
   },
 };
 export default nextConfig;

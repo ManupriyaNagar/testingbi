@@ -21,7 +21,7 @@ export default function EInvitations() {
   useEffect(() => {
     const fetchGeneralInvitations = async () => {
       try {
-        const res = await fetch("http://localhost:5001/api/templates");
+        const res = await fetch("https://beyondinviteb.onrender.com/api/templates");
         const data = await res.json();
 
         // ✅ Filter general invitations
@@ -106,11 +106,10 @@ export default function EInvitations() {
                 <button
                   key={idx}
                   onClick={() => setSelectedFilter(filter.name)}
-                  className={`px-4 py-2 text-sm border rounded-md whitespace-nowrap ${
-                    selectedFilter === filter.name
-                      ? "bg-indigo-100 border-indigo-400 text-indigo-700"
-                      : "bg-white hover:bg-gray-50"
-                  }`}
+                  className={`px-4 py-2 text-sm border rounded-md whitespace-nowrap ${selectedFilter === filter.name
+                    ? "bg-indigo-100 border-indigo-400 text-indigo-700"
+                    : "bg-white hover:bg-gray-50"
+                    }`}
                 >
                   {filter.name}
                 </button>
@@ -125,11 +124,10 @@ export default function EInvitations() {
                 <button
                   key={idx}
                   onClick={() => setSelectedFilter(filter.name)}
-                  className={`px-4 py-2 text-sm border rounded-md ${
-                    selectedFilter === filter.name
-                      ? "bg-indigo-100 border-indigo-400 text-indigo-700"
-                      : "bg-white hover:bg-gray-50"
-                  }`}
+                  className={`px-4 py-2 text-sm border rounded-md ${selectedFilter === filter.name
+                    ? "bg-indigo-100 border-indigo-400 text-indigo-700"
+                    : "bg-white hover:bg-gray-50"
+                    }`}
                 >
                   {filter.name}
                 </button>
@@ -150,7 +148,7 @@ export default function EInvitations() {
                     card.image_url
                       ? card.image_url.startsWith("http")
                         ? card.image_url
-                        : `http://localhost:5001/${card.image_url}`
+                        : `https://beyondinviteb.onrender.com/${card.image_url}`
                       : "/fallback.jpg"
                   }
                   alt={card.title}

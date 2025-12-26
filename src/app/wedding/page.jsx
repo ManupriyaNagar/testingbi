@@ -23,7 +23,7 @@ export default function WeddingInvitations() {
   useEffect(() => {
     const fetchInvitations = async () => {
       try {
-        const res = await fetch("http://localhost:5001/api/templates");
+        const res = await fetch("https://beyondinviteb.onrender.com/api/templates");
         const data = await res.json();
 
         // ✅ Filter only "Wedding" templates
@@ -144,7 +144,7 @@ export default function WeddingInvitations() {
                       src={
                         card.image_url?.startsWith("http")
                           ? card.image_url
-                          : `http://localhost:5001/${card.image_url}`
+                          : `https://beyondinviteb.onrender.com/${card.image_url}`
                       }
                       alt={card.title}
                       className="w-full h-44 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-300"

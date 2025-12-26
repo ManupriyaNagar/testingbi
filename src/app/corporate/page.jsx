@@ -22,7 +22,7 @@ export default function CorporateInvitations() {
   useEffect(() => {
     const fetchInvitations = async () => {
       try {
-        const res = await fetch("http://localhost:5001/api/templates");
+        const res = await fetch("https://beyondinviteb.onrender.com/api/templates");
         const data = await res.json();
 
         const corporateTemplates = data.filter(
@@ -92,11 +92,10 @@ export default function CorporateInvitations() {
                 <button
                   key={idx}
                   onClick={() => setSelectedFilter(filter.name)}
-                  className={`px-3 py-2 text-sm border rounded-md whitespace-nowrap transition-all ${
-                    selectedFilter === filter.name
-                      ? "bg-blue-100 border-blue-400 text-blue-700"
-                      : "bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
-                  }`}
+                  className={`px-3 py-2 text-sm border rounded-md whitespace-nowrap transition-all ${selectedFilter === filter.name
+                    ? "bg-blue-100 border-blue-400 text-blue-700"
+                    : "bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
+                    }`}
                 >
                   {filter.name}
                 </button>
@@ -118,7 +117,7 @@ export default function CorporateInvitations() {
                       src={
                         card.image_url?.startsWith("http")
                           ? card.image_url
-                          : `http://localhost:5001/${card.image_url}`
+                          : `https://beyondinviteb.onrender.com/${card.image_url}`
                       }
                       alt={card.title}
                       className="w-full h-44 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-300"

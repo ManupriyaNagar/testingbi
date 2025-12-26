@@ -33,7 +33,7 @@ export default function WishlistPage() {
       }
 
       try {
-        const res = await fetch(`http://localhost:5001/api/wishlist/${currentUser.id}`);
+        const res = await fetch(`https://beyondinviteb.onrender.com/api/wishlist/${currentUser.id}`);
         let data;
         try {
           data = await res.json();
@@ -74,7 +74,7 @@ export default function WishlistPage() {
                     src={
                       template.image_url.startsWith("http")
                         ? template.image_url
-                        : `http://localhost:5001${template.image_url}`
+                        : `https://beyondinviteb.onrender.com/${template.image_url}`
                     }
                     alt={template.title}
                     fill

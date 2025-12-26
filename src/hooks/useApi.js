@@ -14,7 +14,7 @@
 //         setLoading(true);
 //         setError(null);
 //         const result = await apiFunction();
-        
+
 //         if (isMounted) {
 //           setData(result);
 //         }
@@ -196,7 +196,7 @@ export function useCustomers() {
 
   const fetchCustomers = async () => {
     try {
-      const res = await fetch('http://localhost:5001/api/auth/users'); // ✅ your backend route
+      const res = await fetch('https://beyondinviteb.onrender.com/api/auth/users'); // ✅ your backend route
       if (!res.ok) throw new Error('Failed to fetch users');
       const json = await res.json();
 

@@ -32,7 +32,7 @@ export default function EditTemplateModal({ isOpen, onClose, onSuccess, template
   const getCategoryId = (categoryName) => {
     const categoryMap = {
       'Wedding': 1,
-  
+
       'Corporate': 3,
       'E-Invitation': 4,
       'Birthday': 5,
@@ -61,7 +61,7 @@ export default function EditTemplateModal({ isOpen, onClose, onSuccess, template
       setUploading(true);
       setError("");
 
-      const res = await fetch("http://localhost:5001/api/upload", {
+      const res = await fetch("https://beyondinviteb.onrender.com/api/upload", {
         method: "POST",
         body: data
       });

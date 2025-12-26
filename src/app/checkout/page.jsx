@@ -1,10 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { 
-  ArrowLeft, 
-  CreditCard, 
-  Lock, 
+import {
+  ArrowLeft,
+  CreditCard,
+  Lock,
   Check,
   MapPin,
   User,
@@ -29,13 +29,13 @@ export default function Checkout() {
     state: "",
     zipCode: "",
     country: "United States",
-    
+
     // Payment Information
     cardNumber: "",
     expiryDate: "",
     cvv: "",
     cardName: "",
-    
+
     // Billing same as shipping
     billingDifferent: false,
     billingAddress: "",
@@ -80,37 +80,37 @@ export default function Checkout() {
       handlePlaceOrder();
     }
   };
-const handlePlaceOrder = async () => {
-  try {
-    // Flatten order data to match backend schema
-    const orderData = {
-      customer: `${formData.firstName} ${formData.lastName}`,
-      email: formData.email,
-      phone: formData.phone,
-      type: "Wedding Invitation", // or dynamically set based on selected template
-      amount: total.toFixed(2),
-      templateId: cartItems[0]?.id || null, // if using a template per item
-      notes: `Shipping Address: ${formData.address}, ${formData.city}, ${formData.state} ${formData.zipCode}, ${formData.country}`
-    };
+  const handlePlaceOrder = async () => {
+    try {
+      // Flatten order data to match backend schema
+      const orderData = {
+        customer: `${formData.firstName} ${formData.lastName}`,
+        email: formData.email,
+        phone: formData.phone,
+        type: "Wedding Invitation", // or dynamically set based on selected template
+        amount: total.toFixed(2),
+        templateId: cartItems[0]?.id || null, // if using a template per item
+        notes: `Shipping Address: ${formData.address}, ${formData.city}, ${formData.state} ${formData.zipCode}, ${formData.country}`
+      };
 
-    const response = await fetch("http://localhost:5001/api/orders", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(orderData),
-    });
+      const response = await fetch("https://beyondinviteb.onrender.com/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(orderData),
+      });
 
-    if (response.ok) {
-      localStorage.removeItem("cart");
-      router.push("/order-confirmation");
-    } else {
-      const error = await response.json();
-      alert("Error placing order: " + error.error);
+      if (response.ok) {
+        localStorage.removeItem("cart");
+        router.push("/order-confirmation");
+      } else {
+        const error = await response.json();
+        alert("Error placing order: " + error.error);
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      alert("Something went wrong while placing your order.");
     }
-  } catch (err) {
-    console.error("Error:", err);
-    alert("Something went wrong while placing your order.");
-  }
-};
+  };
 
   const steps = [
     { number: 1, title: "Shipping", icon: MapPin },
@@ -134,7 +134,7 @@ const handlePlaceOrder = async () => {
       {/* Header */}
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 py-4">
-          <button 
+          <button
             onClick={() => router.push('/cart')}
             className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors mb-4"
           >
@@ -151,26 +151,23 @@ const handlePlaceOrder = async () => {
           <div className="flex items-center justify-center">
             {steps.map((step, index) => (
               <div key={step.number} className="flex items-center">
-                <div className={`flex items-center justify-center w-10 h-10 rounded-full border-2 ${
-                  currentStep >= step.number 
-                    ? 'bg-[#37514D] border-[#37514D] text-white' 
+                <div className={`flex items-center justify-center w-10 h-10 rounded-full border-2 ${currentStep >= step.number
+                    ? 'bg-[#37514D] border-[#37514D] text-white'
                     : 'border-gray-300 text-gray-400'
-                }`}>
+                  }`}>
                   {currentStep > step.number ? (
                     <Check className="w-5 h-5" />
                   ) : (
                     <step.icon className="w-5 h-5" />
                   )}
                 </div>
-                <span className={`ml-2 text-sm font-medium ${
-                  currentStep >= step.number ? 'text-[#37514D]' : 'text-gray-400'
-                }`}>
+                <span className={`ml-2 text-sm font-medium ${currentStep >= step.number ? 'text-[#37514D]' : 'text-gray-400'
+                  }`}>
                   {step.title}
                 </span>
                 {index < steps.length - 1 && (
-                  <div className={`w-16 h-0.5 mx-4 ${
-                    currentStep > step.number ? 'bg-[#37514D]' : 'bg-gray-300'
-                  }`} />
+                  <div className={`w-16 h-0.5 mx-4 ${currentStep > step.number ? 'bg-[#37514D]' : 'bg-gray-300'
+                    }`} />
                 )}
               </div>
             ))}
@@ -367,7 +364,7 @@ const handlePlaceOrder = async () => {
                         <p>{formData.country}</p>
                       </div>
                     </div>
-                    
+
                     {/* Payment Info */}
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-2">Payment Method</h3>
@@ -401,7 +398,7 @@ const handlePlaceOrder = async () => {
           {/* Order Summary */}
           <div className="bg-white rounded-lg p-6 shadow-sm h-fit">
             <h2 className="text-xl font-bold text-gray-900 mb-6">Order Summary</h2>
-            
+
             <div className="space-y-4 mb-6">
               {cartItems.map((item, index) => (
                 <div key={`${item.id}-${index}`} className="flex items-center gap-3">

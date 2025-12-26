@@ -8,7 +8,7 @@ export default function TemplatesPage() {
   useEffect(() => {
     const fetchTemplates = async () => {
       try {
-        const response = await fetch("http://localhost:5001/api/templates");
+        const response = await fetch("https://beyondinviteb.onrender.com/api/templates");
         if (!response.ok) {
           throw new Error("Failed to fetch templates");
         }

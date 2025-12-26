@@ -1,8 +1,8 @@
 "use client";
-import { 
+import {
   Mail,
-  ShoppingBag, 
-  Users, 
+  ShoppingBag,
+  Users,
   TrendingUp,
   Plus,
   ArrowUpRight,
@@ -21,7 +21,7 @@ import { useState } from "react";
 
 export default function Dashboard() {
   const [dateRange, setDateRange] = useState('30d');
-  
+
   // Fetch real data from API
   const { data: dashboardData, loading: statsLoading, error: statsError, refetch: refetchStats } = useDashboardStats();
   const { data: ordersData, loading: ordersLoading, error: ordersError } = useOrders();
@@ -48,7 +48,7 @@ export default function Dashboard() {
           <div className="text-center">
             <AlertCircle className="w-8 h-8 text-red-500 mx-auto mb-4" />
             <p className="text-gray-600 mb-4">Failed to load dashboard data</p>
-            <button 
+            <button
               onClick={refetchStats}
               className="bg-[#37514D] text-white px-4 py-2 rounded-lg hover:bg-[#2a3d39] transition-colors"
             >
@@ -62,33 +62,33 @@ export default function Dashboard() {
 
   // Calculate stats from API data
   const stats = [
-    { 
-      title: "Total Templates", 
-      value: dashboardData?.templates?.length?.toString() || "0", 
-      change: "+12%", 
-      icon: Mail, 
-      color: "bg-blue-500" 
+    {
+      title: "Total Templates",
+      value: dashboardData?.templates?.length?.toString() || "0",
+      change: "+12%",
+      icon: Mail,
+      color: "bg-blue-500"
     },
-    { 
-      title: "Total Invitations", 
-      value: dashboardData?.totalInvitations?.toString() || "0", 
-      change: "+8%", 
-      icon: ShoppingBag, 
-      color: "bg-green-500" 
+    {
+      title: "Total Invitations",
+      value: dashboardData?.totalInvitations?.toString() || "0",
+      change: "+8%",
+      icon: ShoppingBag,
+      color: "bg-green-500"
     },
-    { 
-      title: "Total Orders", 
-      value: dashboardData?.totalOrders?.toString() || "0", 
-      change: "+23%", 
-      icon: Users, 
-      color: "bg-purple-500" 
+    {
+      title: "Total Orders",
+      value: dashboardData?.totalOrders?.toString() || "0",
+      change: "+23%",
+      icon: Users,
+      color: "bg-purple-500"
     },
-    { 
-      title: "Revenue", 
-      value: `₹${dashboardData?.totalRevenue?.toLocaleString() || "0"}`, 
-      change: "+15%", 
-      icon: TrendingUp, 
-      color: "bg-orange-500" 
+    {
+      title: "Revenue",
+      value: `₹${dashboardData?.totalRevenue?.toLocaleString() || "0"}`,
+      change: "+15%",
+      icon: TrendingUp,
+      color: "bg-orange-500"
     }
   ];
 
@@ -126,14 +126,14 @@ export default function Dashboard() {
           <p className="text-gray-600 mt-1">Welcome back! Here's what's happening with your business.</p>
         </div>
         <div className="flex gap-3">
-          <button 
+          <button
             onClick={() => setDateRange(dateRange === '30d' ? '7d' : '30d')}
             className="px-4 py-2 border rounded-lg flex items-center gap-2 hover:bg-gray-50"
           >
             <Calendar className="w-4 h-4" />
             Last 30 days
           </button>
-          <button 
+          <button
             onClick={() => window.location.href = '/dashboard/invitations'}
             className="bg-[#37514D] text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-[#2a3d39] transition-colors"
           >
@@ -160,7 +160,7 @@ export default function Dashboard() {
       {/* Charts and Recent Activity */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <AnalyticsChart title="Revenue Overview" type="revenue" />
-        
+
         {/* Quick Stats */}
         <div className="bg-white rounded-xl shadow-sm border p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Stats</h3>
@@ -183,7 +183,7 @@ export default function Dashboard() {
                 </p>
               </div>
             </div>
-            
+
             <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
@@ -202,7 +202,7 @@ export default function Dashboard() {
                 </p>
               </div>
             </div>
-            
+
             <div className="flex items-center justify-between p-3 bg-purple-50 rounded-lg">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
@@ -223,8 +223,8 @@ export default function Dashboard() {
       </div>
 
       {/* Recent Orders */}
-      <OrdersTable 
-        orders={recentOrders.slice(0, 5)} 
+      <OrdersTable
+        orders={recentOrders.slice(0, 5)}
         onView={(order) => alert(`Viewing order: ${order.id}`)}
         onEdit={(order) => window.location.href = '/dashboard/orders'}
         onDelete={(order) => {
@@ -238,7 +238,7 @@ export default function Dashboard() {
       <div className="bg-white rounded-xl shadow-sm border p-6">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-lg font-semibold text-gray-900">Popular Templates</h3>
-          <button 
+          <button
             onClick={() => window.location.href = '/dashboard/invitations'}
             className="text-[#37514D] text-sm font-medium flex items-center gap-1 hover:text-[#2a3d39]"
           >

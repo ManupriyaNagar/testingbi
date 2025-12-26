@@ -1,5 +1,5 @@
 // API configuration and service functions
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://beyondinviteb.onrender.com/api';
 
 // Generic API request function
 async function apiRequest(endpoint, options = {}) {

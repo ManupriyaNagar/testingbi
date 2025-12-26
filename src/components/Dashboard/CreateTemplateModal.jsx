@@ -38,7 +38,7 @@ export default function CreateTemplateModal({ isOpen, onClose, onSuccess }) {
       setError("");
 
       // 👇 Replace with your backend upload endpoint
-      const res = await fetch("http://localhost:5001/api/upload", {
+      const res = await fetch("https://beyondinviteb.onrender.com/api/upload", {
         method: "POST",
         body: formDataObj,
       });

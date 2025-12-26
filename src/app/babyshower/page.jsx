@@ -21,13 +21,13 @@ export default function BabyShowerInvitations() {
   useEffect(() => {
     const fetchBabyShowerTemplates = async () => {
       try {
-        const res = await fetch("http://localhost:5001/api/templates");
+        const res = await fetch("https://beyondinviteb.onrender.com/api/templates");
         const data = await res.json();
 
         const babyShowerInvites = data.filter((item) => {
           const category = (item.category_name || item.category_id)
             ? (item.category_name?.toLowerCase() ||
-                (item.category_id === 2 ? "baby-shower" : "other"))
+              (item.category_id === 2 ? "baby-shower" : "other"))
             : "";
           return category === "baby-shower";
         });
@@ -96,11 +96,10 @@ export default function BabyShowerInvitations() {
                 <button
                   key={idx}
                   onClick={() => setSelectedFilter(filter.name)}
-                  className={`px-3 py-2 text-sm border rounded-md whitespace-nowrap transition-all ${
-                    selectedFilter === filter.name
-                      ? "bg-pink-100 border-pink-400 text-pink-700"
-                      : "bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
-                  }`}
+                  className={`px-3 py-2 text-sm border rounded-md whitespace-nowrap transition-all ${selectedFilter === filter.name
+                    ? "bg-pink-100 border-pink-400 text-pink-700"
+                    : "bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
+                    }`}
                 >
                   {filter.name}
                 </button>
@@ -122,7 +121,7 @@ export default function BabyShowerInvitations() {
                       src={
                         card.image_url?.startsWith("http")
                           ? card.image_url
-                          : `http://localhost:5001/${card.image_url}`
+                          : `https://beyondinviteb.onrender.com/${card.image_url}`
                       }
                       alt={card.title}
                       className="w-full h-44 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-300"
