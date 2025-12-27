@@ -1,11 +1,11 @@
-
 import TemplateDetails from "./TemplateDetailsClient";
+import { API_BASE_URL } from "@/lib/api";
 
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
   try {
-    const res = await fetch('https://beyondinviteb.onrender.com/api/templates');
+    const res = await fetch(`${API_BASE_URL}/templates`);
     if (!res.ok) {
       console.warn(`Static param fetch failed with status ${res.status}. Returning placeholder param.`);
       return [{ id: '1' }];
