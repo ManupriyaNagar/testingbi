@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { X, Save, Upload } from "lucide-react";
-import { templatesAPI } from "@/lib/api";
+import { templatesAPI, API_BASE_URL } from "@/lib/api";
 
 export default function EditTemplateModal({ isOpen, onClose, onSuccess, template }) {
   const [formData, setFormData] = useState({
@@ -61,7 +61,8 @@ export default function EditTemplateModal({ isOpen, onClose, onSuccess, template
       setUploading(true);
       setError("");
 
-      const res = await fetch("https://beyondinviteb.onrender.com/api/upload", {
+      // 👇 Use dynamic API base URL
+      const res = await fetch(`${API_BASE_URL}/upload`, {
         method: "POST",
         body: data
       });

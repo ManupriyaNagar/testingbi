@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
+import { API_BASE_URL, BASE_URL } from "@/lib/api";
 import {
     Heart,
     Share2,
@@ -63,7 +64,7 @@ export default function TemplateDetails() {
             const email = prompt("Enter your email to continue");
             if (!email) return;
 
-            const res = await fetch(`https://beyondinviteb.onrender.com/api/auth/check?email=${email}`);
+            const res = await fetch(`${API_BASE_URL}/auth/check?email=${email}`);
             const data = await res.json();
 
             if (data.exists) {
@@ -75,7 +76,7 @@ export default function TemplateDetails() {
         }
 
         try {
-            const response = await fetch("https://beyondinviteb.onrender.com/api/wishlist", {
+            const response = await fetch(`${API_BASE_URL}/wishlist`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ userId: currentUser.id, templateId }),
@@ -113,7 +114,7 @@ export default function TemplateDetails() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch(`https://beyondinviteb.onrender.com/api/templates/${params.id}`);
+                const res = await fetch(`${API_BASE_URL}/templates/${params.id}`);
                 if (!res.ok) throw new Error("Template not found");
                 const data = await res.json();
 
@@ -130,7 +131,7 @@ export default function TemplateDetails() {
 
                 setTemplate(formattedTemplate);
 
-                const resAll = await fetch("https://beyondinviteb.onrender.com/api/templates");
+                const resAll = await fetch(`${API_BASE_URL}/templates`);
                 const allData = await resAll.json();
                 setAllTemplates(allData);
             } catch (err) {
@@ -384,7 +385,7 @@ export default function TemplateDetails() {
                                         <div className="aspect-square relative">
                                             {rel.image_url && (
                                                 <Image
-                                                    src={rel.image_url.startsWith("http") ? rel.image_url : `https://beyondinviteb.onrender.com${rel.image_url}`}
+                                                    src={rel.image_url.startsWith("http") ? rel.image_url : `${BASE_URL}${rel.image_url}`}
                                                     alt={rel.title}
                                                     fill
                                                     className="object-cover"

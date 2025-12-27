@@ -102,6 +102,7 @@
 
 
 import { useState, useEffect } from 'react';
+import { API_BASE_URL } from '@/lib/api';
 
 // ----------------------------------------
 // Generic useApi hook for async operations
@@ -196,7 +197,7 @@ export function useCustomers() {
 
   const fetchCustomers = async () => {
     try {
-      const res = await fetch('https://beyondinviteb.onrender.com/api/auth/users'); // ✅ your backend route
+      const res = await fetch(`${API_BASE_URL}/auth/users`); // ✅ centralized API route
       if (!res.ok) throw new Error('Failed to fetch users');
       const json = await res.json();
 

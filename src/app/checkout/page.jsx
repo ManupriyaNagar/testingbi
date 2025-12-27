@@ -12,6 +12,7 @@ import {
   Phone
 } from "lucide-react";
 import Image from "next/image";
+import { API_BASE_URL } from "@/lib/api";
 
 export default function Checkout() {
   const router = useRouter();
@@ -93,7 +94,7 @@ export default function Checkout() {
         notes: `Shipping Address: ${formData.address}, ${formData.city}, ${formData.state} ${formData.zipCode}, ${formData.country}`
       };
 
-      const response = await fetch("https://beyondinviteb.onrender.com/api/orders", {
+      const response = await fetch(`${API_BASE_URL}/orders`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(orderData),
@@ -152,8 +153,8 @@ export default function Checkout() {
             {steps.map((step, index) => (
               <div key={step.number} className="flex items-center">
                 <div className={`flex items-center justify-center w-10 h-10 rounded-full border-2 ${currentStep >= step.number
-                    ? 'bg-[#37514D] border-[#37514D] text-white'
-                    : 'border-gray-300 text-gray-400'
+                  ? 'bg-[#37514D] border-[#37514D] text-white'
+                  : 'border-gray-300 text-gray-400'
                   }`}>
                   {currentStep > step.number ? (
                     <Check className="w-5 h-5" />

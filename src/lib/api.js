@@ -1,5 +1,16 @@
 // API configuration and service functions
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://beyondinviteb.onrender.com/api';
+const getBaseUrl = () => {
+  if (typeof window !== 'undefined') {
+    const hostname = window.location.hostname;
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+      return 'http://localhost:5001';
+    }
+  }
+  return 'https://beyondinviteb.onrender.com';
+};
+
+export const BASE_URL = getBaseUrl();
+export const API_BASE_URL = `${BASE_URL}/api`;
 
 // Generic API request function
 async function apiRequest(endpoint, options = {}) {

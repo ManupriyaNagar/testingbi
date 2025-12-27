@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Star } from "lucide-react";
 import { useEffect, useState } from "react";
+import { API_BASE_URL, BASE_URL } from "@/lib/api";
 
 export default function TemplateList() {
   const router = useRouter();
@@ -12,7 +13,7 @@ export default function TemplateList() {
   useEffect(() => {
     const fetchTemplates = async () => {
       try {
-        const res = await fetch("https://beyondinviteb.onrender.com/api/templates");
+        const res = await fetch(`${API_BASE_URL}/templates`);
         const data = await res.json();
         setTemplates(data);
       } catch (err) {
@@ -50,7 +51,7 @@ export default function TemplateList() {
                 src={
                   template.image_url?.startsWith("http")
                     ? template.image_url
-                    : `https://beyondinviteb.onrender.com/${template.image_url}`
+                    : `${BASE_URL}${template.image_url.startsWith('/') ? '' : '/'}${template.image_url}`
                 }
                 alt={template.title}
                 fill

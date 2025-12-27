@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { X, Upload, Save, Image as ImageIcon } from "lucide-react";
-import { templatesAPI } from "@/lib/api";
+import { templatesAPI, API_BASE_URL } from "@/lib/api";
 
 export default function CreateTemplateModal({ isOpen, onClose, onSuccess }) {
   const [formData, setFormData] = useState({
@@ -37,8 +37,8 @@ export default function CreateTemplateModal({ isOpen, onClose, onSuccess }) {
       setUploading(true);
       setError("");
 
-      // 👇 Replace with your backend upload endpoint
-      const res = await fetch("https://beyondinviteb.onrender.com/api/upload", {
+      // 👇 Use dynamic API base URL
+      const res = await fetch(`${API_BASE_URL}/upload`, {
         method: "POST",
         body: formDataObj,
       });

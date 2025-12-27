@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { API_BASE_URL, BASE_URL } from "@/lib/api";
 
 const filters = [
   { name: "Most Popular" },
@@ -21,7 +22,7 @@ export default function EInvitations() {
   useEffect(() => {
     const fetchGeneralInvitations = async () => {
       try {
-        const res = await fetch("https://beyondinviteb.onrender.com/api/templates");
+        const res = await fetch(`${API_BASE_URL}/templates`);
         const data = await res.json();
 
         // ✅ Filter general invitations
@@ -148,7 +149,7 @@ export default function EInvitations() {
                     card.image_url
                       ? card.image_url.startsWith("http")
                         ? card.image_url
-                        : `https://beyondinviteb.onrender.com/${card.image_url}`
+                        : `${BASE_URL}${card.image_url.startsWith('/') ? '' : '/'}${card.image_url}`
                       : "/fallback.jpg"
                   }
                   alt={card.title}

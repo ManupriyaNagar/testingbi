@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { API_BASE_URL } from "@/lib/api";
 
 export default function TemplatesPage() {
   const [templates, setTemplates] = useState([]);
@@ -8,7 +9,7 @@ export default function TemplatesPage() {
   useEffect(() => {
     const fetchTemplates = async () => {
       try {
-        const response = await fetch("https://beyondinviteb.onrender.com/api/templates");
+        const response = await fetch(`${API_BASE_URL}/templates`);
         if (!response.ok) {
           throw new Error("Failed to fetch templates");
         }

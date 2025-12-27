@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Star } from "lucide-react";
+import { API_BASE_URL, BASE_URL } from "@/lib/api";
 
 export default function WishlistPage() {
   const router = useRouter();
@@ -33,7 +34,7 @@ export default function WishlistPage() {
       }
 
       try {
-        const res = await fetch(`https://beyondinviteb.onrender.com/api/wishlist/${currentUser.id}`);
+        const res = await fetch(`${API_BASE_URL}/wishlist/${currentUser.id}`);
         let data;
         try {
           data = await res.json();
@@ -74,7 +75,7 @@ export default function WishlistPage() {
                     src={
                       template.image_url.startsWith("http")
                         ? template.image_url
-                        : `https://beyondinviteb.onrender.com/${template.image_url}`
+                        : `${BASE_URL}${template.image_url.startsWith('/') ? '' : '/'}${template.image_url}`
                     }
                     alt={template.title}
                     fill
